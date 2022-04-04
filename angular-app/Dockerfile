@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 ### Stage 1: Build ### 
 FROM node:14.17.3-alpine3.14 as build
 WORKDIR /app
