@@ -5,7 +5,9 @@ pipeline {
             steps { 
                 sh '''
                     echo "Iniciando la instalacion de la aplicacion en el cluster K8S"
-                    kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.1/docs/examples/2048/2048_full.yaml
+                    kubectl apply -f ./publish/deployment.yml
+                    kubectl apply -f ./publish/service.yml
+                    kubectl apply -f ./publish/ingress.yml.yml
                 '''
             }
         }
