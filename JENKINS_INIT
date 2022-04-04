@@ -1,0 +1,24 @@
+pipeline { 
+    agent any 
+    stages {
+        stage('Levantando APP') { 
+            steps { 
+                sh '''
+                    echo "Iniciando la instalacion de la aplicacion en el cluster K8S"
+                    kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.1/docs/examples/2048/2048_full.yaml
+                '''
+            }
+        }
+        stage('URL externa de la APP'){
+            steps {
+                sh 'sleep 5'
+                sh 'kubectl get ingress -n game-2048'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'echo Deployment completado'
+            }
+        }
+    }
+}

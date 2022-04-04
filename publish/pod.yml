@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: test-pot
+    image: nginx:alpine
+
+
+# eksctl create nodegroup \
+#   --cluster test-cluster \
+#   --name test-workers \
+#   --node-type t3.small \
+#   --nodes 1 \
+#   --nodes-min 1 \
+#   --nodes-max 3 \
+#   --asg-access
