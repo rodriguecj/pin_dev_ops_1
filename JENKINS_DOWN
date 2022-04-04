@@ -1,0 +1,26 @@
+pipeline { 
+    agent any 
+    stages {
+        stage('Bajando la Levantando APP') { 
+            steps { 
+                sh '''
+                    echo "Dando de baja la instalacion de la aplicacion en el cluster K8S"
+                    kubectl delete -f ./publish/deployment.yml
+                    kubectl delete -f ./publish/service.yml
+                    kubectl delete -f ./publish/ingress.yml
+                '''
+            }
+        }
+        stage('Consultando Ingress'){
+            steps {
+                sh 'sleep 5'
+                sh 'kubectl get ingress -n game-2048'
+            }
+        }
+        stage('Bajado') {
+            steps {
+                sh 'kubectl get all -n game-2048'
+            }
+        }
+    }
+}

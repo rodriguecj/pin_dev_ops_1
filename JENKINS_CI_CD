@@ -1,0 +1,23 @@
+pipeline { 
+    agent any 
+    stages {
+        stage('Build') { 
+            steps { 
+                sh '''
+                    echo "Actualizando APP cluster K8S"
+                    ./angular-app/build-docker.sh
+                '''
+            }
+        }
+        stage('Publicando'){
+            steps {
+                sh './angular-app/push-docker.sh'
+            }
+        }
+        stage('Actualizando deployment de la APP') {
+            steps {
+                sh 'kubectl apply -f ./publish/deployment.yml -n game-2048'
+            }
+        }
+    }
+}
