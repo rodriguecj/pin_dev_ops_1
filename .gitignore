@@ -9,3 +9,7 @@ docker-compose.yml
 ## Publish
 publish/serviceAccount.yml
 publish/v2_4_1_full.yaml
+
+## APP
+angular-app/node_modules
+angular-app/dist
