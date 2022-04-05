@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Angular-app de PIN 2022';
+  title = '2022 Angular-app de PIN 2022';
 }
