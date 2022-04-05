@@ -5,18 +5,22 @@ pipeline {
             steps { 
                 sh '''
                     echo "Actualizando APP cluster K8S"
-                    ./angular-app/build-docker.sh
+                    cd ./angular-app
+                    ./build-docker.sh
                 '''
             }
         }
         stage('Publicando'){
             steps {
-                sh './angular-app/push-docker.sh'
+                sh './push-docker.sh'
             }
         }
         stage('Actualizando deployment de la APP') {
             steps {
-                sh 'kubectl apply -f ./publish/deployment.yml -n game-2048'
+                sh '''
+                    cd ..
+                    kubectl apply -f ./publish/deployment.yml -n game-2048'
+                '''
             }
         }
     }
