@@ -12,13 +12,15 @@ pipeline {
         }
         stage('Publicando'){
             steps {
-                sh './push-docker.sh'
+                sh '''
+                    cd ./angular-app
+                    ./push-docker.sh
+                '''
             }
         }
         stage('Actualizando deployment de la APP') {
             steps {
                 sh '''
-                    cd ..
                     kubectl apply -f ./publish/deployment.yml -n game-2048'
                 '''
             }
