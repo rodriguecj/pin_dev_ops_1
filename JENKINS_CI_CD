@@ -21,7 +21,7 @@ pipeline {
         stage('Actualizando deployment de la APP') {
             steps {
                 sh '''
-                    kubectl apply -f ./publish/deployment.yml -n game-2048'
+                    kubectl apply -f ./publish/deployment.yml -n game-2048
                 '''
             }
         }
